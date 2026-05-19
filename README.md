@@ -1,26 +1,85 @@
-# Project Empty Template
+# Automation Exercise – Playwright Test Suite
 
-Este é um repositório de exemplo para você começar a desenvolver a questão, leia com atenção os requisitos do enunciado da questão na plataforma e seguia as boas práticas sobre como utilizar este repositório.
+Suite de testes automatizados end-to-end e de API para o site [automationexercise.com](https://automationexercise.com), construída com arquitetura Page Object Model (POM), dados dinâmicos e boas práticas de clean code.
 
+---
 
-## Readme do Repositório
+## Tecnologias
 
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
+- **TypeScript**
+- **Playwright**
+- **Node.js**
+- **@faker-js/faker**
+
+---
+
+## Estrutura do projeto
+
+```
+src/
+  pages/        # Page Objects (um arquivo por página)
+  fixtures/     # Injeção de dependência das pages via test.extend
+  types/        # Interfaces de domínio (ui.ts, api.ts)
+  utils/        # Fábrica de dados dinâmicos (dataFactory.ts)
+tests/
+  register.spec.ts      # Desafio 1 – Registro de novo usuário
+  cart.spec.ts          # Desafio 2 – Manipulação de inventário / carrinho
+  api-products.spec.ts  # Desafio 3 – Validação do endpoint GET /api/productsList
+playwright.config.ts
+tsconfig.json
+```
+
+---
+
+## Instalação
+
+**Pré-requisito:** Node.js 18 ou superior.
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/mbalbinote/Totvs-se-o1.git
+cd Totvs-se-o1
+
+# 2. Instale as dependências
+npm install
+
+# 3. Instale os browsers do Playwright
+npx playwright install
+```
+
+---
+
+## Como usar
+
+```bash
+# Rodar todos os testes (headless)
+npm test
+
+# Rodar com browser visível
+npm run test:headed
+
+# Rodar um spec específico
+npx playwright test tests/register.spec.ts --headed
+npx playwright test tests/cart.spec.ts --headed
+npx playwright test tests/api-products.spec.ts
+
+# Modo debug interativo
+npm run test:debug
+
+# Abrir relatório HTML da última execução
+npm run test:report
+```
+
+---
+
+## Testes implementados
+
+| Spec | Descrição |
+|------|-----------|
+| `register.spec.ts` | Fluxo completo de cadastro com dados dinâmicos, valida mensagem "ACCOUNT CREATED!" |
+| `cart.spec.ts` | Adiciona 4 unidades de um produto e valida quantidade e valores no resumo do carrinho |
+| `api-products.spec.ts` | Valida status 200, estrutura e integridade dos dados do endpoint `GET /api/productsList` |
+
+---
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)
-
-## Finalização e Instruções para a Apresentação
-
-1. Adicione o link do repositório com a sua solução na questão na plataforma
-2. Verifique se o Readme está bom e faça o commit final em seu repositório;
-3. Envie e aguarde as instruções para seguir. Caso o teste tenha apresentação de vídeo, dentro da tela de entrega será possível gravar após adicionar o link do repositório. Sucesso e boa sorte. =)
-
-
-## Suporte
-
-Para tirar dúvidas sobre o processo envie uma mensagem diretamente a um especialista no chat da plataforma. 
